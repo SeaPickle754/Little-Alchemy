@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-
+#include "sidebar.hpp"
 class Application{
 public:
   Application(sf::RenderWindow*);
@@ -10,5 +10,6 @@ private:
     void handleEvents();
     void render();
     void update();
+    Sidebar sidebar;
     sf::RenderWindow* window;
 };

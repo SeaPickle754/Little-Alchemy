@@ -1,7 +1,6 @@
 #include "Application.hpp"
 
-Application::Application(sf::RenderWindow* win){
-    // mem leak??
+Application::Application(sf::RenderWindow* win) : sidebar(){
     window = win;
 }
 
@@ -31,6 +30,8 @@ void Application::render()
 {
     window->clear(sf::Color(90,90,90));
     // render code here
+    sidebar.render(*window);
+    // too far!
     window->display();
 }
 
