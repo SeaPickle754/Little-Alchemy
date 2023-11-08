@@ -1,11 +1,14 @@
 #include "item.hpp"
 
-Item::Item(): atlas("images/tiles.png", 16, 16){
-    // all items are scaled up...
-    atlas.sprite.scale(sf::Vector2f(2, 2));
-    // this class should be used like a singleton in the main game renderer, and the sidebar can be passed a reference of it.
+
+Item::Item(sf::Vector2i offset, sf::String name, sf::Vector2f position, TextureAtlas* texture){
+    m_offset = offset;
+    m_name = name;
+    m_position = position;
+    m_texture = texture;
 }
 
-void Item::render(sf::RenderWindow& window, float x, float y, sf::Vector2i index){
-    atlas.render(sf::Vector2f(x, y), index, window);
+
+void Item::render(sf::RenderWindow& window){
+    m_texture->render(m_position, m_offset, window);
 }

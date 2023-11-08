@@ -1,6 +1,7 @@
 #include "Application.hpp"
 
-Application::Application(sf::RenderWindow* win) : sidebar(){
+Application::Application(sf::RenderWindow* win) : tileatlas("images/tiles.png", 16, 16), sidebar(&tileatlas){
+    tileatlas.set_scale(global::scale);
     window = win;
 }
 

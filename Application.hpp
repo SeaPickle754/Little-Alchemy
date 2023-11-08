@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "TextureAtlas.hpp"
 #include "sidebar.hpp"
 class Application{
 public:
@@ -11,5 +12,6 @@ private:
     void render();
     void update();
     Sidebar sidebar;
+    TextureAtlas tileatlas;
     sf::RenderWindow* window;
 };

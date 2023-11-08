@@ -2,6 +2,8 @@
 // for globals.
 #include "globals.h"
 #include "item.hpp"
+#include "TextureAtlas.hpp"
+#include <vector>
 #include <cmath>
 using std::floor;
 
@@ -10,8 +12,9 @@ const sf::Color bgcolor = sf::Color(255, 255, 200);
 class Sidebar{
 private:
     sf::RectangleShape bg;
-    Item* testItem;
+    std::vector<Item> items;
+    TextureAtlas* m_atlas;
 public:
-    Sidebar();
+    Sidebar(TextureAtlas*);
     void render(sf::RenderWindow&);
 };
