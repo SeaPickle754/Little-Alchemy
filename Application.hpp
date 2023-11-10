@@ -6,7 +6,7 @@ class Application{
 public:
   Application(sf::RenderWindow*);
   // when this method returns, the game ends.
-  // that or shit goes wrong.
+  // that or ---- goes wrong.
   void startApp();
 private:
     void handleEvents();
