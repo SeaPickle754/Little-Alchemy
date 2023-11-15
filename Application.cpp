@@ -1,5 +1,8 @@
 #include "Application.hpp"
 
+// prototype for dumb function i use later
+bool isOffset(offset o);
+
 Application::Application(sf::RenderWindow* win) : tileatlas("images/tiles.png", 16, 16), sidebar(&tileatlas),
  maingame(&tileatlas){
     tileatlas.set_scale(global::scale);
@@ -24,8 +27,6 @@ void Application::handleEvents()
         if (event.type == sf::Event::Closed) {window->close();}
         if (event.type == sf::Event::KeyPressed){
             if (event.key.code == sf::Keyboard::Escape) {window->close();}
-            if (event.key.code == sf::Keyboard::A) {maingame.spawnItem(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window)),
-                                                                       sf::Vector2i(1,0), "Earth.");}
         }
     }
 }
@@ -41,4 +42,19 @@ void Application::render()
 }
 
 void Application::update(){
+    // if a mouse button pressed...
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
+        if(isOffset(sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window))))){
+            offset offset_ = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
+            maingame.spawnItem(vec(300, 300), offset_, "n");
+        }
+    }
+}
+
+// Not part of application class, but needs to be here
+bool isOffset(offset o){
+    if (o.x != -1 || o.y != -1){
+        return true;
+    }
+    return false;
 }
