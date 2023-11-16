@@ -44,9 +44,12 @@ void Application::render()
 void Application::update(){
     // if a mouse button pressed...
     if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
-        if(isOffset(sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window))))){
-            offset offset_ = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
-            maingame.spawnItem(vec(300, 300), offset_, "n");
+        offset o = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
+        if(isOffset(o)){
+            selection = o;
+        }
+        else{
+            maingame.spawnItem(vec(sf::Mouse::getPosition(*window)), selection, "Amogus sissisisisis");
         }
     }
 }

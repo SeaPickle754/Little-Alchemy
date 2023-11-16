@@ -16,4 +16,6 @@ private:
     TextureAtlas tileatlas;
     MainGame maingame;
     sf::RenderWindow* window;
+    // for storing which button the mouse clicked on
+    offset selection;
 };
