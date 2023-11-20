@@ -11,4 +11,5 @@ public:
     MainGame(TextureAtlas* texture);
     void spawnItem(sf::Vector2f position, sf::Vector2i offset, sf::String name);
     void render(sf::RenderWindow& window);
+    void addItem(Item& item) {items.push_back(item); }
 };

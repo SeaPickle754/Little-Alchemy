@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "globals.h"
+#include <cassert>
 #include <vector>
 class TextureAtlas{
 private:
