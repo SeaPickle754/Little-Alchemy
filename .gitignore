@@ -1,5 +1,6 @@
 *.cbp
 *.depend
-bin/
+*.dll
+*.exe
 obj/
 *.layout
