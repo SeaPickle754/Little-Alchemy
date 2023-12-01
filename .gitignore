@@ -1,6 +1,6 @@
-*.cbp
-*.depend
-*.dll
-*.exe
-obj/
 *.layout
+*.depend
+*.cbp
+*.dll
+*.o
+*.exe

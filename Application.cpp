@@ -13,8 +13,8 @@ bool isOffset(offset o);
 * but getting a working game is better
 * Thank you!!
 */
-Application::Application(sf::RenderWindow* win) : tileatlas("images/tiles.png", 16, 16), sidebar(&tileatlas),
-draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas){
+Application::Application(sf::RenderWindow* win) : tileatlas(TILE_FILE, global::tileHeight, global::tileWidth),
+sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas){
     tileatlas.set_scale(global::scale);
     window = win;
     isMouseDragging = false;
@@ -52,7 +52,7 @@ void Application::handleEvents()
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left &&
             isMouseDragging){
                 draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
-                maingame.addItem(draggedItem);
+                maingame.spawnItem(draggedItem);
                 isMouseDragging = false;
     }
     }

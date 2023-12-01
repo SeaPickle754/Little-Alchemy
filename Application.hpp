@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cassert>
+#include "globals.h"
 #include "TextureAtlas.hpp"
 #include "sidebar.hpp"
 #include "item.hpp"
@@ -21,6 +22,7 @@ private:
     MainGame maingame;
     sf::RenderWindow* window;
     bool isMouseDragging;
+
     // for storing which button the mouse clicked on
     offset selection;
 };
