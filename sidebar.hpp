@@ -1,3 +1,4 @@
+# pragma once
 #include <SFML/Graphics.hpp>
 // for globals.
 #include "globals.h"
@@ -5,7 +6,7 @@
 #include "TextureAtlas.hpp"
 #include "itemButton.hpp"
 #include <vector>
-#include <cmath>
+#include <cassert>
 #include "logger.hpp"
 
 const sf::Color bgcolor = sf::Color(255, 255, 200);
@@ -19,4 +20,5 @@ public:
     Sidebar(TextureAtlas*);
     void render(sf::RenderWindow&);
     offset buttonclicked(vec position);
+    void addElement(offset n_offset);
 };

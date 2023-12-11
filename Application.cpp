@@ -14,7 +14,7 @@ bool isOffset(offset o);
 * Thank you!!
 */
 Application::Application(sf::RenderWindow* win) : tileatlas(TILE_FILE, global::tileHeight, global::tileWidth),
-sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas){
+sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas, &sidebar){
     tileatlas.set_scale(global::scale);
     window = win;
     isMouseDragging = false;

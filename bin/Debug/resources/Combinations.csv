@@ -1,2 +1,11 @@
 react1,react2,products
 water,air,fog
+fire,air,energy
+fire,water,steam
+earth,steam,geyser
+earth,fog,geyser
+earth,fire,lava
+lava,water,obsidian
+air,lava,stone
+fire,stone,metal
+energy,metal,electricity

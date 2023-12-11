@@ -1,7 +1,8 @@
 #include "main_game.hpp"
 
-MainGame::MainGame(TextureAtlas* texture) : fileParser(){
+MainGame::MainGame(TextureAtlas* texture, Sidebar* sidebr) : fileParser(){
     m_texture = texture;
+    m_sidebar = sidebr;
 
 }
 
@@ -14,6 +15,7 @@ void MainGame::spawnItem(sf::Vector2f position, sf::Vector2i n_offset, sf::Strin
             offset product = fileParser.getProduct(n_item.get_offset(), i->get_offset());
             if(product.x != -1 && product.y != -1){
                 n_item.set_offset(product);
+                m_sidebar->addElement(product);
                 items.erase(i);
                 break;
             }

@@ -27,3 +27,11 @@ offset Sidebar::buttonclicked(vec position){
     }
     return offset(-1, -1);
 }
+void Sidebar::addElement(offset n_offset){
+    // assert that the vec is never empty
+    assert(items.size() != 0);
+    auto last = items[items.size()-1];
+    vec pos = last.getPosition();
+    pos.y += global::buttony;
+    items.push_back(Button(pos, n_offset, m_atlas));
+}

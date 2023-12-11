@@ -4,3 +4,11 @@ offsetX,offsetY,name
 2,0,water
 3,0,air
 0,1,fog
+1,1,energy
+2,1,steam
+3,1,geyser
+0,2,lava
+1,2,obsidian
+2,2,stone
+3,2,metal
+0,3,electricity

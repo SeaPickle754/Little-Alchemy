@@ -7,11 +7,11 @@
 #include "main_game.hpp"
 class Application{
 public:
-  Application(sf::RenderWindow*);
-  // when this method returns, the game ends.
-  // that or ---- goes wrong.
-  void startApp();
-  TextureAtlas* getTextureAtlas();
+    Application(sf::RenderWindow*);
+    // when this method returns, the game ends.
+    // that or ---- goes wrong.
+    void startApp();
+    TextureAtlas* getTextureAtlas();
 private:
     void handleEvents();
     void render();
