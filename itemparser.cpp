@@ -24,12 +24,19 @@ offset FileParser::getProduct(offset react1, offset react2){
     for(auto i = combos.begin(); i != combos.end(); i++){
         // this horrible code is (probably) a mess of bugs.
         // dirty hack, but best way to do it?!?!?
+
+        // creates 2 bools named flag1 & 2, and sets them to false
+        bool flag1, flag2; flag1 = false; flag2 = false;
         if(i->react1 == react1 || i->react1 == react2){
+            flag1 = true;
+        }
+        if(i->react2 == react1 || i->react2 == react2){
+            flag2 = true;
+        }
+        if (flag1 && flag2){
             return i->product;
         }
-        else if(i->react2 == react1 || i->react2 == react2){
-            return i->product;
-        }
+
     }
     // TODO: implement code to handle this case
     return offset(-1, -1);

@@ -8,17 +8,19 @@ MainGame::MainGame(TextureAtlas* texture) : fileParser(){
 void MainGame::spawnItem(sf::Vector2f position, sf::Vector2i n_offset, sf::String name){
     Item n_item(n_offset, name, position, m_texture);
     for(auto i = items.begin(); i!= items.end(); i++){
-        offset checker;
+        bool checker;
         checker = (i->isColliding(n_item.getRect()));
-        if(checker.y != -1 && checker.x != -1){
-                sf::Vector2i product = fileParser.getProduct(n_item.get_offset(), checker);
-                items.push_back(Item(product, "e.", n_item.get_position(), m_texture));
+        if(checker){
+            offset product = fileParser.getProduct(n_item.get_offset(), i->get_offset());
+            if(product.x != -1 && product.y != -1){
+                n_item.set_offset(product);
                 items.erase(i);
-                return;
+                break;
+            }
         }
     }
 
-    items.push_back(Item(n_offset, name, position, m_texture));
+    items.push_back(n_item);
 }
 
 void MainGame::render(sf::RenderWindow& window){

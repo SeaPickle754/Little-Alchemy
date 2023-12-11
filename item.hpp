@@ -8,7 +8,7 @@ private:
     sf::Vector2i m_offset;
     sf::Vector2f m_position;
     sf::String m_name;
-    sf::Rect<int> m_hitbox;
+    sf::Rect<float> m_hitbox;
     // dont need 2 free bc freeing would delete the texture
     TextureAtlas* m_texture;
 public:
@@ -20,6 +20,6 @@ public:
     inline sf::Vector2f get_position() {return m_position;}
     inline sf::Vector2i get_offset() {return m_offset;}
     // returns offset of item if rect intersects
-    offset isColliding(sf::Rect<int>);
-    inline sf::Rect<int> getRect() {return m_hitbox;};
+    bool isColliding(sf::Rect<float>);
+    inline sf::Rect<float> getRect() {return m_hitbox;}
 };
