@@ -1,5 +1,6 @@
 #include "sidebar.hpp"
 
+
 Sidebar::Sidebar(TextureAtlas* atlas){
     bg.setPosition(sf::Vector2f(0,0));
     // this just gets the correct width and height of the sidebar relative to the window.
@@ -30,8 +31,15 @@ offset Sidebar::buttonclicked(vec position){
 void Sidebar::addElement(offset n_offset){
     // assert that the vec is never empty
     assert(items.size() != 0);
+    // if not already in the list
+    for(auto i = items.begin(); i!= items.end(); i++){
+        if(i->getOffset() == n_offset)
+            return;
+    }
+// add it to the list
     auto last = items[items.size()-1];
     vec pos = last.getPosition();
     pos.y += global::buttony;
     items.push_back(Button(pos, n_offset, m_atlas));
 }
+

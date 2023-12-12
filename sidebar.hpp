@@ -7,6 +7,7 @@
 #include "itemButton.hpp"
 #include <vector>
 #include <cassert>
+#include <algorithm>
 #include "logger.hpp"
 
 const sf::Color bgcolor = sf::Color(255, 255, 200);
