@@ -5,6 +5,8 @@
 #include "sidebar.hpp"
 #include "item.hpp"
 #include "main_game.hpp"
+// include various UI elements
+#include "ui/Button.hpp"
 class Application{
 public:
     Application(sf::RenderWindow*);
@@ -21,6 +23,7 @@ private:
     TextureAtlas tileatlas;
     MainGame maingame;
     sf::RenderWindow* window;
+    uiButton* clearItems;
     bool isMouseDragging;
 
     // for storing which button the mouse clicked on

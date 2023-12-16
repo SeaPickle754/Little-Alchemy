@@ -12,3 +12,9 @@ offsetX,offsetY,name
 2,2,stone
 3,2,metal
 0,3,electricity
+1,3,wire
+2,3,flooded_earth
+3,3,pool
+0,4,ocean
+1,4,sea
+2,4,lake

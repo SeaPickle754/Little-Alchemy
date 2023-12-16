@@ -6,6 +6,8 @@ m_position = position;
 m_offset = offset;
 
 rect.setOutlineColor(global::button_outline_color);
+// thicc
+rect.setOutlineThickness(3);
 rect.setPosition(position);
 rect.setFillColor(global::button_color);
 // see global.h definition of vec :)

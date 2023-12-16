@@ -9,3 +9,9 @@ lava,water,obsidian
 air,lava,stone
 fire,stone,metal
 energy,metal,electricity
+electricity,metal,wire
+water,earth,flooded_earth
+water,water,pool
+pool,pool,lake
+lake,lake,ocean
+ocean,ocean,sea
