@@ -16,6 +16,10 @@ bool isOffset(offset o);
 Application::Application(sf::RenderWindow* win) : tileatlas(TILE_FILE, global::tileHeight, global::tileWidth),
 sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas, &sidebar){
     tileatlas.set_scale(global::scale);
+    sf::Texture* clritems;
+    clritems = new sf::Texture;
+    clritems->loadFromFile("resources/images/clearitems.png");
+    clearItems = new uiButton(clritems, clritems, vec(global::width+128, 0));
     window = win;
     isMouseDragging = false;
 }
@@ -48,12 +52,16 @@ void Application::handleEvents()
                     draggedItem.set_offset(o);
                     isMouseDragging = true;
                 }
+                if(clearItems->checkClick(vec(sf::Mouse::getPosition(*window)))){
+                    maingame.clearItems();
+                }
         }
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left &&
             isMouseDragging){
                 draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
                 maingame.spawnItem(draggedItem);
                 isMouseDragging = false;
+                clearItems->checkClick(vec(sf::Mouse::getPosition(*window)));
     }
     }
 }
@@ -62,11 +70,12 @@ void Application::render()
 {
     window->clear(sf::Color(90,90,90));
     // render code here
+    sidebar.render(*window);
+    maingame.render(*window);
     if(isMouseDragging){
         draggedItem.render(*window);
     }
-    sidebar.render(*window);
-    maingame.render(*window);
+    clearItems->render(*window);
     // too far!
     window->display();
 }
