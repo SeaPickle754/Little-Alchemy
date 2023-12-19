@@ -17,6 +17,7 @@ public:
     MainGame(TextureAtlas* texture, Sidebar*);
     inline void clearItems() {items.erase(items.begin(), items.end());}
     void spawnItem(sf::Vector2f position, sf::Vector2i offset, sf::String name);
+    offset getClickedItem(vec position);
     void render(sf::RenderWindow& window);
     inline void spawnItem(Item& i) {spawnItem(i.get_position(), i.get_offset(), i.getName());}
 };

@@ -52,6 +52,13 @@ void Application::handleEvents()
                     draggedItem.set_offset(o);
                     isMouseDragging = true;
                 }
+                o = maingame.getClickedItem(vec(sf::Mouse::getPosition(*window)));
+                if(isOffset(o))
+                    {
+                        draggedItem.set_offset(o);
+                        draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
+                        isMouseDragging = true;
+                    }
                 if(clearItems->checkClick(vec(sf::Mouse::getPosition(*window)))){
                     maingame.clearItems();
                 }

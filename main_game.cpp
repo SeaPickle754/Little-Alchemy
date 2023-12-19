@@ -6,6 +6,17 @@ MainGame::MainGame(TextureAtlas* texture, Sidebar* sidebr) : fileParser(){
 
 }
 
+offset MainGame::getClickedItem(vec position){
+    for(auto i = items.begin(); i != items.end(); i++){
+        if(i->isClicked(position)){
+            offset o = i->get_offset();
+            items.erase(i);
+            return o;
+        }
+    }
+    return offset(-1, -1);
+}
+
 void MainGame::spawnItem(sf::Vector2f position, sf::Vector2i n_offset, sf::String name){
     Item n_item(n_offset, name, position, m_texture);
     for(auto i = items.begin(); i!= items.end(); i++){

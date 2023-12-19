@@ -21,5 +21,6 @@ public:
     inline sf::Vector2i get_offset() {return m_offset;}
     // returns offset of item if rect intersects
     bool isColliding(sf::Rect<float>);
+    bool isClicked(vec position);
     inline sf::Rect<float> getRect() {return m_hitbox;}
 };

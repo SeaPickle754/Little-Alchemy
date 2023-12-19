@@ -24,6 +24,15 @@ bool Item::isColliding(sf::Rect<float> otherRect){
     return false;
 }
 
+bool Item::isClicked(vec position){
+    m_hitbox.left = (m_position.x);
+    m_hitbox.top = (m_position.y);
+    if(m_hitbox.contains(position)){
+        return true;
+    }
+    return false;
+}
+
 void Item::render(sf::RenderWindow& window){
     m_texture->render(m_position, m_offset, window);
 }
