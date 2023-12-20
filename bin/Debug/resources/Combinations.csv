@@ -11,7 +11,10 @@ fire,stone,metal
 energy,metal,electricity
 electricity,metal,wire
 water,earth,flooded_earth
-water,water,pool
-pool,pool,lake
-lake,lake,ocean
-ocean,ocean,sea
+flooded_earth,water,sea
+pool,water,lake
+lake,water,ocean
+ocean,water,sea
+fog,air,sky
+fire,sky,sun
+water,sun,sunset

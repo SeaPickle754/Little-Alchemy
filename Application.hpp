@@ -7,6 +7,7 @@
 #include "main_game.hpp"
 // include various UI elements
 #include "ui/Button.hpp"
+#include <string>
 class Application{
 public:
     Application(sf::RenderWindow*);

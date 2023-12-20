@@ -91,6 +91,7 @@ void Application::update(){
     if(isMouseDragging){
         draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
     }
+
 }
 
 // Not part of application class, but needs to be here
