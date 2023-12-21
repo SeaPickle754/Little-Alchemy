@@ -13,7 +13,7 @@ offsetX,offsetY,name
 3,2,metal
 0,3,electricity
 1,3,wire
-2,3,flooded_earth
+2,3,mud
 3,3,pool
 0,4,ocean
 1,4,sea
@@ -21,3 +21,7 @@ offsetX,offsetY,name
 3,4,sky
 0,5,sun
 1,5,sunset
+2,5,plant
+3,5,swamp
+0,6,life
+1,6,dust

@@ -10,11 +10,15 @@ air,lava,stone
 fire,stone,metal
 energy,metal,electricity
 electricity,metal,wire
-water,earth,flooded_earth
-flooded_earth,water,sea
+water,stone,pool
 pool,water,lake
 lake,water,ocean
 ocean,water,sea
 fog,air,sky
 fire,sky,sun
 water,sun,sunset
+water,earth,mud
+mud,energy,plant
+mud,plant,swamp
+swamp,energy,life
+earth,air,dust
