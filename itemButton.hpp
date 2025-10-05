@@ -9,8 +9,11 @@ private:
     sf::Vector2f m_position;
     sf::Vector2i m_offset;
     sf::RectangleShape rect;
+    sf::String m_name;
+    sf::Font* m_font;
+    sf::Text m_text;
 public:
-    Button(sf::Vector2f position, sf::Vector2i offset, TextureAtlas* texture);
+    Button(sf::Vector2f position, sf::Vector2i offset, TextureAtlas* texture, sf::Font* font);
     // this function returns true if clicked on.
     inline bool onClick(sf::Vector2f position){if(rect.getGlobalBounds().contains(position)){return true;} return false;}
     void render(sf::RenderWindow& window);

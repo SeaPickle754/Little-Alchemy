@@ -1,4 +1,4 @@
-#include "sidebar.hpp"
+#include "Sidebar.hpp"
 
 
 Sidebar::Sidebar(TextureAtlas* atlas){
@@ -8,11 +8,14 @@ Sidebar::Sidebar(TextureAtlas* atlas){
     bg.setFillColor(bgcolor);
     bg.setOutlineColor(sf::Color(127,124, 127));
     m_atlas = atlas;
+   
+}
+void Sidebar::init(sf::Font* font){
+    m_font = font;
     for(int i = 0; i < 4; i++){
-        items.push_back(Button(vec(0, i*32), offset(i, 0), atlas));
+        items.push_back(Button(vec(0, i*32), offset(i, 0), m_atlas, m_font));
     }
 }
-
 void Sidebar::render(sf::RenderWindow& window){
     window.draw(bg);
     for(auto i = items.begin(); i != items.end(); i++){
@@ -40,6 +43,6 @@ void Sidebar::addElement(offset n_offset){
     auto last = items[items.size()-1];
     vec pos = last.getPosition();
     pos.y += global::buttony;
-    items.push_back(Button(pos, n_offset, m_atlas));
+    items.push_back(Button(pos, n_offset, m_atlas, m_font));
 }
 

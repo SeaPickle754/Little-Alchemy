@@ -8,9 +8,10 @@ private:
     sf::Vector2i m_offset;
     sf::Vector2f m_position;
     sf::String m_name;
-    sf::Rect<float> m_hitbox;
+    sf::FloatRect m_hitbox;
     // dont need 2 free bc freeing would delete the texture
     TextureAtlas* m_texture;
+    sf::RectangleShape m_rect; 
 public:
     Item(sf::Vector2i n_offset, sf::String name, sf::Vector2f position, TextureAtlas* texture);
     void render(sf::RenderWindow& window);

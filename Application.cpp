@@ -13,9 +13,23 @@ bool isOffset(offset o);
 * but getting a working game is better
 * Thank you!!
 */
-Application::Application(sf::RenderWindow* win) : tileatlas(TILE_FILE, global::tileHeight, global::tileWidth),
-sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), maingame(&tileatlas, &sidebar){
+Application::Application(sf::RenderWindow* win) : m_font(new sf::Font()), tileatlas(TILE_FILE, global::tileHeight, global::tileWidth), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas),
+    maingame(&tileatlas), sidebar(&tileatlas) {
     tileatlas.set_scale(global::scale);
+    printf("created application constructor \n");
+    tileatlas.setFileParser(maingame.getFileParser());
+    maingame.setSidebar(&sidebar);
+    // open font
+    m_font->openFromFile(FONT_FILE);
+    // create completion text and start to setup
+    elementNumber = new sf::Text(*m_font);
+    elementNumber->setString("4/"+std::to_string(maingame.getFileParser()->getElementNumber()));
+    
+    elementNumber->setPosition({(global::width+50), (global::height-250)});
+
+    // done with fonts
+    // give the sidebar a reference to the font
+    sidebar.init(m_font);
     sf::Texture* clritems;
     clritems = new sf::Texture;
     clritems->loadFromFile("resources/images/clearitems.png");
@@ -23,7 +37,6 @@ sidebar(&tileatlas), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas), mai
     window = win;
     isMouseDragging = false;
 }
-
 void Application::startApp()
 {
     // is window closes, then so should the game
@@ -36,23 +49,30 @@ void Application::startApp()
 
 void Application::handleEvents()
 {
-    sf::Event event;
-    while (window->pollEvent(event)){
+    
+    while (const std::optional event = window->pollEvent()){
         // first if statement!
-        if (event.type == sf::Event::Closed) {window->close();}
-        if (event.type == sf::Event::KeyPressed){
-            if (event.key.code == sf::Keyboard::Escape) {window->close();}
+        if (event->is<sf::Event::Closed>()) {window->close();}
+        else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
+        {
+            if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
+                window->close();
         }
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
-               // if a mouse button pressed...
-               // TODO: put this in a function
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+            {
                // ====================================================================
-                offset o = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
-                if(isOffset(o)){
-                    draggedItem.set_offset(o);
-                    isMouseDragging = true;
+                offset o = {-1, -1};
+                if(!isMouseDragging){
+                    o = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
+                    if(isOffset(o)){
+                        draggedItem.set_offset(o);
+                        isMouseDragging = true;
+                    }
                 }
-                o = maingame.getClickedItem(vec(sf::Mouse::getPosition(*window)));
+                if(isMouseDragging)
+                    draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
+                if(!isMouseDragging)
+                    o = maingame.getClickedItem(vec(sf::Mouse::getPosition(*window)));
                 if(isOffset(o))
                     {
                         draggedItem.set_offset(o);
@@ -63,14 +83,14 @@ void Application::handleEvents()
                     maingame.clearItems();
                 }
         }
-        if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left &&
+        if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) &&
             isMouseDragging){
                 draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
                 maingame.spawnItem(draggedItem);
                 isMouseDragging = false;
                 clearItems->checkClick(vec(sf::Mouse::getPosition(*window)));
     }
-    }
+}
 }
 
 void Application::render()
@@ -83,6 +103,8 @@ void Application::render()
         draggedItem.render(*window);
     }
     clearItems->render(*window);
+    // draw text for progress completion
+    window->draw(*elementNumber);
     // too far!
     window->display();
 }
@@ -91,6 +113,7 @@ void Application::update(){
     if(isMouseDragging){
         draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
     }
+    elementNumber->setString(std::to_string(sidebar.getFoundElements())+" / "+std::to_string(maingame.getFileParser()->getElementNumber()));
 
 }
 

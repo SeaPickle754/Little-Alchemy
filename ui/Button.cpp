@@ -1,8 +1,7 @@
 #include "Button.hpp"
 
-uiButton::uiButton (sf::Texture* normal,sf::Texture* clicked, sf::Vector2f location){
-    m_normal.setTexture(*normal);
-    m_clicked.setTexture(*clicked);
+uiButton::uiButton (sf::Texture* normal,sf::Texture* clicked, sf::Vector2f location)
+:m_normal(*normal), m_clicked(*clicked){
     m_normal.setPosition(location);
     m_clicked.setPosition(location);
     m_currentSpr = &m_normal;

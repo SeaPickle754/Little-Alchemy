@@ -1,11 +1,9 @@
 #include "TextureAtlas.hpp"
 
-TextureAtlas::TextureAtlas(const char* filepath, int image_h, int image_w){
+TextureAtlas::TextureAtlas(const char* filepath, int image_h, int image_w)
+: img(new sf::Texture()), sprite(*img){
     m_scale = 1;
-    img = new sf::Texture();
     img->loadFromFile(filepath);
-    sprite.setTexture(*img);
-
     image_height = image_h;
     image_width = image_w;
 }

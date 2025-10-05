@@ -22,10 +22,10 @@ namespace global{
 typedef sf::Vector2i offset;
 typedef sf::Vector2f vec;
 #define OFFSET_FILE "resources/offsets.csv"
-#define REACTION_FILE "resources/combinations.csv"
+#define REACTION_FILE "resources/Combinations.csv"
     // i love the name of this
 #define TILE_FILE "resources/images/tiles.png"
-
+#define FONT_FILE "resources/font.ttf"
 #define SAFE_DELETE(ptr) if (ptr != NULL){delete ptr; ptr = 0;}
 
 #endif // GLOBALS_H

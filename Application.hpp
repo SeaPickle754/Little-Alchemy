@@ -1,10 +1,14 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/System/String.hpp>
 #include <cassert>
 #include "globals.h"
 #include "TextureAtlas.hpp"
-#include "sidebar.hpp"
+#include "Sidebar.hpp"
 #include "item.hpp"
+#include <stdio.h>
 #include "main_game.hpp"
+
 // include various UI elements
 #include "ui/Button.hpp"
 #include <string>
@@ -24,6 +28,8 @@ private:
     TextureAtlas tileatlas;
     MainGame maingame;
     sf::RenderWindow* window;
+    sf::Font* m_font;
+    sf::Text* elementNumber;
     uiButton* clearItems;
     bool isMouseDragging;
 

@@ -1041,8 +1041,8 @@ template <class overflow_policy, class T> void parse(char *col, T &x) {
   // "sizeof(T)!=sizeof(T)" only when instantiating it. This is why
   // this strange construct is used.
   static_assert(sizeof(T) != sizeof(T),
-                "Can not parse this type. Only builtin integrals, floats, "
-                "char, char*, const char* and std::string are supported");
+            "Can not parse this type. Only builtin integrals, floats, "
+               "char, char*, const char* and std::string are supported");
 }
 
 } // namespace detail

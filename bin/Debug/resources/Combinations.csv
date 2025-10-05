@@ -22,3 +22,4 @@ mud,energy,plant
 mud,plant,swamp
 swamp,energy,life
 earth,air,dust
+lava,earth,volcano

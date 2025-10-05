@@ -3,6 +3,8 @@
 *.cbp
 *.dll
 *.o
+*.d
+*.bin
 *.exe
 *.sublime-project
 *.sublime-workspace
