@@ -12,6 +12,7 @@ namespace global{
     const int tileHeight = 16;
     const int tileWidth = 16;
     const float scale = 2.f;
+    const float SCROLL_MULTIPLIER = 3.f;
     // file names for itemparser.hpp
     // TODO: make this dynamic
     const int buttonx = 175;

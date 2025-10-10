@@ -23,6 +23,8 @@ private:
 public:
     Sidebar(TextureAtlas*);
     inline int getFoundElements(){return items.size();}
+    void scroll(float delta, float);
+    bool isMouseOver(float);
     void init(sf::Font*);
     void render(sf::RenderWindow&);
     offset buttonclicked(vec position);

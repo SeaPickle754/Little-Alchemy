@@ -58,6 +58,12 @@ void Application::handleEvents()
             if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
                 window->close();
         }
+        else if (event->is<sf::Event::MouseWheelScrolled>()) {
+            const auto& scrollEvent = event->getIf<sf::Event::MouseWheelScrolled>();
+            float delta = scrollEvent->delta;
+            //printf("Mouse scrolled. %f \n", delta);
+            sidebar.scroll(delta, (float)sf::Mouse::getPosition(*window).x);
+        }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
             {
                // ====================================================================

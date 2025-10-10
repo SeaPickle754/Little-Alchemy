@@ -22,7 +22,11 @@ void Sidebar::render(sf::RenderWindow& window){
         i->render(window);
     }
 }
-
+bool Sidebar::isMouseOver(float mouseX){
+    if(mouseX > 0 && mouseX < std::floor(global::width/4))
+        return true;
+    return false;
+}
 offset Sidebar::buttonclicked(vec position){
     for(auto i = items.begin(); i != items.end(); i++){
     if(i->onClick(position)){
@@ -30,6 +34,13 @@ offset Sidebar::buttonclicked(vec position){
     }
     }
     return offset(-1, -1);
+}
+void Sidebar::scroll(float delta, float mouseX){
+    if(isMouseOver(mouseX)){
+        for(auto i = items.begin(); i!= items.end(); i++){
+            i->move({0, delta*global::SCROLL_MULTIPLIER});
+        }
+    }
 }
 void Sidebar::addElement(offset n_offset){
     // assert that the vec is never empty

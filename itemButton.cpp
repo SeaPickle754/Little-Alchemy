@@ -16,7 +16,11 @@ rect.setFillColor(global::button_color);
 // see global.h definition of vec :)
 rect.setSize(vec(global::buttonx, global::buttony));
 }
-
+void Button::move(vec offset){
+    m_position = m_position+offset;
+    m_text.setPosition(m_text.getPosition()+offset);
+    rect.setPosition(rect.getPosition()+offset);
+}
 void Button::render(sf::RenderWindow& window){
     window.draw(rect);
     window.draw(m_text);
