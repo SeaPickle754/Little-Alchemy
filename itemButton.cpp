@@ -21,6 +21,11 @@ void Button::move(vec offset){
     m_text.setPosition(m_text.getPosition()+offset);
     rect.setPosition(rect.getPosition()+offset);
 }
+void Button::setPosition(vec offset){
+    m_position = offset;
+    m_text.setPosition(offset);
+    rect.setPosition(offset);
+}
 void Button::render(sf::RenderWindow& window){
     window.draw(rect);
     window.draw(m_text);

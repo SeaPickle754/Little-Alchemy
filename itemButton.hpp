@@ -19,6 +19,7 @@ public:
     void render(sf::RenderWindow& window);
     vec getPosition(){return m_position;}
     void move(vec);
+    void setPosition(vec);
     // to identify the offset
     // useful later I promise
     inline offset getOffset() {return m_offset; }

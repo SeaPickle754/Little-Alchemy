@@ -29,16 +29,26 @@ bool Sidebar::isMouseOver(float mouseX){
 }
 offset Sidebar::buttonclicked(vec position){
     for(auto i = items.begin(); i != items.end(); i++){
-    if(i->onClick(position)){
-        return i->getOffset();
-    }
+        if(i->onClick(position)){
+            return i->getOffset();
+        }
     }
     return offset(-1, -1);
 }
 void Sidebar::scroll(float delta, float mouseX){
     if(isMouseOver(mouseX)){
-        for(auto i = items.begin(); i!= items.end(); i++){
-            i->move({0, delta*global::SCROLL_MULTIPLIER});
+        if(items.begin()->getPosition().y > global::SCROLL_MULTIPLIER){
+            // TODO: TO fix this move the loop inside the if statement.
+            for(auto i = items.begin(); i != items.end(); i++){
+                    i->move({0, delta*global::SCROLL_MULTIPLIER});
+            }
+        }else{
+                if(delta < 0)
+                    return;
+                for(auto i = items.begin(); i != items.end(); i++){
+                    i->move({0, 0.5});
+                }
+            return;
         }
     }
 }
