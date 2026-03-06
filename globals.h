@@ -5,14 +5,15 @@
 #include <SFML/Graphics/Color.hpp>
 // TODO: change to glob.
 namespace global{
-    const int height = 900;
+// TODO: Swap these!
+	const int height = 900;
     const int width = 700;
     // these are for the default tile height and width
     // before scaling is applied
     const int tileHeight = 16;
     const int tileWidth = 16;
     const float scale = 2.f;
-    const float SCROLL_MULTIPLIER = 3.f;
+    const float SCROLL_MULTIPLIER = 5.f;
     // file names for itemparser.hpp
     // TODO: make this dynamic
     const int buttonx = 175;

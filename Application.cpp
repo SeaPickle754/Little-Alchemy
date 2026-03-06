@@ -68,7 +68,15 @@ void Application::handleEvents()
             {
                // ====================================================================
                 offset o = {-1, -1};
-                if(!isMouseDragging){
+				if(!isMouseDragging)
+                    o = maingame.getClickedItem(vec(sf::Mouse::getPosition(*window)));
+                if(isOffset(o))
+                    {
+                        draggedItem.set_offset(o);
+                        draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
+                        isMouseDragging = true;
+                    }
+				if(!isMouseDragging){
                     o = sidebar.buttonclicked(vec(sf::Mouse::getPosition(*window)));
                     if(isOffset(o)){
                         draggedItem.set_offset(o);
@@ -77,14 +85,6 @@ void Application::handleEvents()
                 }
                 if(isMouseDragging)
                     draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
-                if(!isMouseDragging)
-                    o = maingame.getClickedItem(vec(sf::Mouse::getPosition(*window)));
-                if(isOffset(o))
-                    {
-                        draggedItem.set_offset(o);
-                        draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
-                        isMouseDragging = true;
-                    }
                 if(clearItems->checkClick(vec(sf::Mouse::getPosition(*window)))){
                     maingame.clearItems();
                 }

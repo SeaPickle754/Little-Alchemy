@@ -10,23 +10,31 @@ Sidebar::Sidebar(TextureAtlas* atlas){
     m_atlas = atlas;
    
 }
+
+
 void Sidebar::init(sf::Font* font){
     m_font = font;
     for(int i = 0; i < 4; i++){
         items.push_back(Button(vec(0, i*32), offset(i, 0), m_atlas, m_font));
     }
 }
+
+
 void Sidebar::render(sf::RenderWindow& window){
     window.draw(bg);
     for(auto i = items.begin(); i != items.end(); i++){
         i->render(window);
     }
 }
+
+
 bool Sidebar::isMouseOver(float mouseX){
     if(mouseX > 0 && mouseX < std::floor(global::width/4))
         return true;
     return false;
 }
+
+
 offset Sidebar::buttonclicked(vec position){
     for(auto i = items.begin(); i != items.end(); i++){
         if(i->onClick(position)){
@@ -35,23 +43,39 @@ offset Sidebar::buttonclicked(vec position){
     }
     return offset(-1, -1);
 }
+
+
 void Sidebar::scroll(float delta, float mouseX){
-    if(isMouseOver(mouseX)){
-        if(items.begin()->getPosition().y > global::SCROLL_MULTIPLIER){
-            // TODO: TO fix this move the loop inside the if statement.
-            for(auto i = items.begin(); i != items.end(); i++){
-                    i->move({0, delta*global::SCROLL_MULTIPLIER});
-            }
-        }else{
-                if(delta < 0)
-                    return;
-                for(auto i = items.begin(); i != items.end(); i++){
-                    i->move({0, 0.5});
-                }
-            return;
-        }
+    // delta is change (scroll distance)
+	printf("Delta: %f\n", delta);
+	if(isMouseOver(mouseX)){
+		// if scrolling down
+		if(delta > 0){
+			// dont allow the top element to scroll farther down than top of screen
+			if(!(items.begin()->getPosition().y > 0)){
+				for(auto i = items.begin(); i != items.end(); i++){
+					i->move({0, delta*global::SCROLL_MULTIPLIER});
+				}
+			}
+		}
+		// if scrolling down dont allow the bottom element to leave the bottom of the screen
+		else if(delta < 0){
+			sf::Vector2f bePos = items.back().getPosition();
+			// if it is lower than bottom of screen scroll
+			printf("bePos+32: %f\n", (bePos.y+32));
+			// TODO: Swap height and width
+			if(bePos.y+32>(global::width)){
+				for(auto i = items.begin(); i != items.end(); i++){
+					i->move({0, delta*global::SCROLL_MULTIPLIER});
+				}
+
+			}
+		}
     }
 }
+
+
+
 void Sidebar::addElement(offset n_offset){
     // assert that the vec is never empty
     assert(items.size() != 0);
