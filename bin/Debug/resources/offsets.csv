@@ -25,3 +25,9 @@ offsetX,offsetY,name
 3,5,swamp
 0,6,life
 1,6,dust
+2,6,pottery
+3,6,sand
+0,7,time
+1,7,glass
+2,7,potted plant
+3,7,water bottle

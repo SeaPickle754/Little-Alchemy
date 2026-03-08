@@ -16,7 +16,7 @@ lake,water,ocean
 ocean,water,sea
 fog,air,sky
 fire,sky,sun
-water,sun,sunset
+sky,sun,sunset
 water,earth,mud
 mud,energy,plant
 mud,plant,swamp
@@ -25,3 +25,9 @@ earth,air,dust
 lava,earth,volcano
 fire,plant,dust
 dust,water,mud
+mud,fire,pottery
+stone,energy,sand
+sand,fire,glass
+glass,sand,time
+pottery,plant,potted plant
+water,pottery,water bottle
