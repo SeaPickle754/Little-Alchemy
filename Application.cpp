@@ -14,7 +14,7 @@ bool isOffset(offset o);
 * Thank you!!
 */
 Application::Application(sf::RenderWindow* win) : m_font(new sf::Font()), tileatlas(TILE_FILE, global::tileHeight, global::tileWidth), draggedItem(offset(-1, -1), "", vec(0, 0), &tileatlas),
-    maingame(&tileatlas), sidebar(&tileatlas) {
+    maingame(&tileatlas), sidebar(&tileatlas), achievement(m_font) {
     tileatlas.set_scale(global::scale);
     printf("created application constructor \n");
     tileatlas.setFileParser(maingame.getFileParser());
@@ -24,18 +24,21 @@ Application::Application(sf::RenderWindow* win) : m_font(new sf::Font()), tileat
     // create completion text and start to setup
     elementNumber = new sf::Text(*m_font);
     elementNumber->setString("4/"+std::to_string(maingame.getFileParser()->getElementNumber()));
-    
+
     elementNumber->setPosition({(global::width+50), (global::height-250)});
 
     // done with fonts
     // give the sidebar a reference to the font
     sidebar.init(m_font);
+    achievement.init(m_font);
+    sidebar.setAchievement(&achievement);
     sf::Texture* clritems;
     clritems = new sf::Texture;
     clritems->loadFromFile("resources/images/clearitems.png");
     clearItems = new uiButton(clritems, clritems, vec(global::width+128, 0));
     window = win;
     isMouseDragging = false;
+    achievement.createAchievement("It begins...", "Start playing the game.", false);
 }
 void Application::startApp()
 {
@@ -49,7 +52,7 @@ void Application::startApp()
 
 void Application::handleEvents()
 {
-    
+
     while (const std::optional event = window->pollEvent()){
         // first if statement!
         if (event->is<sf::Event::Closed>()) {window->close();}
@@ -101,6 +104,7 @@ void Application::handleEvents()
 
 void Application::render()
 {
+    float delta = deltaClock.restart().asSeconds();
     window->clear(sf::Color(90,90,90));
     // render code here
     sidebar.render(*window);
@@ -109,6 +113,7 @@ void Application::render()
         draggedItem.render(*window);
     }
     clearItems->render(*window);
+    achievement.updateAchievements(*window, delta);
     // draw text for progress completion
     window->draw(*elementNumber);
     // too far!
@@ -120,6 +125,9 @@ void Application::update(){
         draggedItem.set_position(vec(sf::Mouse::getPosition(*window)));
     }
     elementNumber->setString(std::to_string(sidebar.getFoundElements())+" / "+std::to_string(maingame.getFileParser()->getElementNumber()));
+    if(sidebar.getFoundElements() == maingame.getFileParser()->getElementNumber()){
+        achievement.createAchievement("The End","Finish the game.",true);
+    }
 
 }
 

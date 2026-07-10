@@ -20,6 +20,7 @@ public:
     vec getPosition(){return m_position;}
     void move(vec);
     void setPosition(vec);
+    inline sf::String getName(){return m_name;}
     // to identify the offset
     // useful later I promise
     inline offset getOffset() {return m_offset; }

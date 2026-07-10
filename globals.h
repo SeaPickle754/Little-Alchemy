@@ -13,13 +13,16 @@ namespace global{
     const int tileHeight = 16;
     const int tileWidth = 16;
     const float scale = 2.f;
-    const float SCROLL_MULTIPLIER = 5.f;
+    const float SCROLL_MULTIPLIER = 7.f;
     // file names for itemparser.hpp
     // TODO: make this dynamic
     const int buttonx = 175;
     const int buttony = 35;
     const sf::Color button_outline_color = sf::Color(0,0,0);
     const sf::Color button_color = sf::Color(100, 100, 100);
+    // time in seconds for normal and rare acheivement display times
+    const int ACHIEVEMENT_NORMAL_TIME = 3;
+    const int ACHIEVEMENT_RARE_TIME = 5;
 };
 typedef sf::Vector2i offset;
 typedef sf::Vector2f vec;

@@ -6,6 +6,7 @@
 #include "TextureAtlas.hpp"
 #include "Sidebar.hpp"
 #include "item.hpp"
+#include "Achievement.hpp"
 #include <stdio.h>
 #include "main_game.hpp"
 
@@ -27,12 +28,13 @@ private:
     Item draggedItem;
     TextureAtlas tileatlas;
     MainGame maingame;
+    Achievement achievement;
     sf::RenderWindow* window;
     sf::Font* m_font;
     sf::Text* elementNumber;
+    sf::Clock deltaClock;
     uiButton* clearItems;
     bool isMouseDragging;
-
     // for storing which button the mouse clicked on
     offset selection;
 };

@@ -8,7 +8,7 @@ Sidebar::Sidebar(TextureAtlas* atlas){
     bg.setFillColor(bgcolor);
     bg.setOutlineColor(sf::Color(127,124, 127));
     m_atlas = atlas;
-   
+
 }
 
 
@@ -88,6 +88,27 @@ void Sidebar::addElement(offset n_offset){
     auto last = items[items.size()-1];
     vec pos = last.getPosition();
     pos.y += global::buttony;
-    items.push_back(Button(pos, n_offset, m_atlas, m_font));
+    Button button = Button(pos, n_offset, m_atlas, m_font);
+    sf::String name = button.getName();
+    items.push_back(button);
+    // electricity
+    if(n_offset == sf::Vector2i({0, 3})){
+        m_achievement->createAchievement("The Modern Age","Create Electricity.",false);
+    }
+    // time
+    else if (n_offset == sf::Vector2i({0,7})){
+        m_achievement->createAchievement("Master of It", "Create Time", true);
+    }
+    // Sunset
+    else if (n_offset == sf::Vector2i({1,5})){
+        m_achievement->createAchievement("The Skyfire Circle", "Create Sunset.", false);
+    }
+    // water bottle
+    else if (n_offset == sf::Vector2i({3, 7})){
+        m_achievement->createAchievement("Bottl o' water", "Create a way to store water.", false);
+    }
+    else if (n_offset == sf::Vector2i({2, 6})){
+        m_achievement->createAchievement("sussus amogus","Create a masterpiece.", true);
+    }
 }
 
